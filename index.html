@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Weather Report</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='style.css'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css'>
+</head>
+<body>
+    <div class="firstBox">
+        <i id="location" class="fa-solid fa-location-dot" style="color: black;"></i>
+        <input type="text" id="cityInput" placeholder="Enter city name" > 
+        <div class="tempDesc">
+        <p id="tempBar">+20&deg;C</p>
+        <p id="tempFeel">Feels like 18&deg;C</p>
+    </div>
+    <div class="secondBox">
+    <div class="secondBoxLeft">
+        <p id="day">Monday</p>
+        <div id="humidity">
+        <i class="fa-solid fa-droplet" style="color: #000000;"></i>
+        <p id="humidPercent">32%</p></div>
+        <div id="wind">
+        <i class="fa-solid fa-wind" style="color: #000000;"></i>
+        <p id="windSpeed">12km/h</p></div>
+        <div id="speed">
+        <i class="fa-solid fa-gauge" style="color: #000000;"></i>
+        <p id="speedd">1102hPa</p></div>
+    </div>
+    <image class="weatherImage" src="sunRainy101.png" width="450" height="330"></image>
+    </div>
+    <div class="thirdBox">
+        <div class="days">TUE
+            <image class="dayWeatherImage" src="hotSunny101.png" width="100" height="100"></image>
+                <div class="dayHumidity">
+                <i class="fa-solid fa-droplet" style="color: #000000;"></i>
+                <p class="dayHumidPercent">32%</p></div>
+                <div class="dayWind">
+                <i class="fa-solid fa-wind" style="color: #000000;"></i>
+                <p class="dayWindSpeed">12km/h</p></div>
+                <div class="daySpeed">
+                    <i class="fa-solid fa-gauge" style="color: #000000;"></i>
+                    <p class="daySpeedd">1102hPa</p></div>
+        </div>
+        <div class="days">WED
+            <image class="dayWeatherImage" src="cloudy101.png" width="100" height="100"></image>
+                <div class="dayHumidity">
+                <i class="fa-solid fa-droplet" style="color: #000000;"></i>
+                <p class="dayHumidPercent">32%</p></div>
+                <div class="dayWind">
+                <i class="fa-solid fa-wind" style="color: #000000;"></i>
+                <p class="dayWindSpeed">12km/h</p></div>
+                <div class="daySpeed">
+                    <i class="fa-solid fa-gauge" style="color: #000000;"></i>
+                    <p class="daySpeedd">1102hPa</p></div>
+        </div>
+        <div class="days">THU
+            <image class="dayWeatherImage" src="rainy101.png" width="100" height="100"></image>
+                <div class="dayHumidity">
+                <i class="fa-solid fa-droplet" style="color: #000000;"></i>
+                <p class="dayHumidPercent">32%</p></div>
+                <div class="dayWind">
+                <i class="fa-solid fa-wind" style="color: #000000;"></i>
+                <p class="dayWindSpeed">12km/h</p></div>
+                <div class="daySpeed">
+                    <i class="fa-solid fa-gauge" style="color: #000000;"></i>
+                    <p class="daySpeedd">1102hPa</p></div>
+        </div>
+        <div class="days">FRI
+            <image class="dayWeatherImage" src="snowy101.png" width="100" height="100"></image>
+                <div class="dayHumidity">
+                <i class="fa-solid fa-droplet" style="color: #000000;"></i>
+                <p class="dayHumidPercent">32%</p></div>
+                <div class="dayWind">
+                <i class="fa-solid fa-wind" style="color: #000000;"></i>
+                <p class="dayWindSpeed">12km/h</p></div>
+                <div class="daySpeed">
+                    <i class="fa-solid fa-gauge" style="color: #000000;"></i>
+                    <p class="daySpeedd">1102hPa</p></div>
+        </div>
+        <div class="days">SAT
+            <image class="dayWeatherImage" src="cold101.png" width="100" height="100"></image>
+                <div class="dayHumidity">
+                <i class="fa-solid fa-droplet" style="color: #000000;"></i>
+                <p class="dayHumidPercent">32%</p></div>
+                <div class="dayWind">
+                <i class="fa-solid fa-wind" style="color: #000000;"></i>
+                <p class="dayWindSpeed">12km/h</p></div>
+                <div class="daySpeed">
+                    <i class="fa-solid fa-gauge" style="color: #000000;"></i>
+                    <p class="daySpeedd">1102hPa</p></div>
+        </div>
+        <div class="days">SUN
+            <image class="dayWeatherImage" src="sunny101.png" width="100" height="100"></image>
+                <div class="dayHumidity">
+                <i class="fa-solid fa-droplet" style="color: #000000;"></i>
+                <p class="dayHumidPercent">32%</p></div>
+                <div class="dayWind">
+                <i class="fa-solid fa-wind" style="color: #000000;"></i>
+                <p class="dayWindSpeed">12km/h</p></div>
+                <div class="daySpeed">
+                    <i class="fa-solid fa-gauge" style="color: #000000;"></i>
+                    <p class="daySpeedd">1102hPa</p></div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+
+</body>
+</html>
