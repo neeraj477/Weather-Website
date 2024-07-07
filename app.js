@@ -2,6 +2,15 @@ let latitude;
 let longitude;
 let url1;
 let url2;
+let intCurrentTemp;
+
+const inputElement = document.querySelector("#cityInput");
+inputElement.addEventListener('keydown', function(event) {
+    if(event.key === 'Enter' ) {
+        console.log('Enter Key was pressed');
+        getInputValue();
+    }
+});
 
 
 const getInputValue = async() => {
@@ -21,7 +30,7 @@ const getLocation = async() => {
         console.log(latitude);
         console.log(longitude);
         },5000);
-    url2 = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,weather_code,wind_speed_10m&daily=weather_code,temperature_2m_max,precipitation_probability_max,wind_speed_10m_max&timeformat=unixtime&timezone=Asia%2FTokyo`;
+    url2 = `https://api.open-meteo.com/v1/forecast?latitude=${longitude}&longitude=${latitude}&current=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,weather_code,wind_speed_10m&daily=weather_code,temperature_2m_max,precipitation_probability_max,wind_speed_10m_max&timeformat=unixtime&timezone=Asia%2FTokyo`;
     await getWeather();
 };
 
@@ -31,4 +40,13 @@ const getWeather = async() => {
     console.log(response2)
     let data2 = await response2.json();
     console.log(data2);
+    currentTemp = await data2.current.apparent_temperature
+    intCurrentTemp = Math.floor(currentTemp);
+    console.log(currentTemp);
+    await changeText()
 };
+
+function changeText() {
+    const temp = document.querySelector("#tempBar");
+    temp.innerText = `+${intCurrentTemp}°C`;
+}
