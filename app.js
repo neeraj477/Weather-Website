@@ -3,6 +3,9 @@ let longitude;
 let url1;
 let url2;
 let intCurrentTemp;
+let intApparentTemp;
+let unixTime;
+let dayName;
 
 const inputElement = document.querySelector("#cityInput");
 inputElement.addEventListener('keydown', function(event) {
@@ -40,13 +43,31 @@ const getWeather = async() => {
     console.log(response2)
     let data2 = await response2.json();
     console.log(data2);
-    currentTemp = await data2.current.apparent_temperature
+    currentTemp = await data2.current.temperature_2m;
+    apparentTemp = await data2.current.apparent_temperature;
+    unixTime = await data2.current.time;
     intCurrentTemp = Math.floor(currentTemp);
-    console.log(currentTemp);
-    await changeText()
+    intApparentTemp = Math.floor(apparentTemp);
+    console.log(unixTime);
+    await getDay();
+    await changeText();
 };
+
+function getDay() {
+    const date = new Date(unixTime * 1000);
+    const dayNumber = date.getDay();
+    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    dayName = days[dayNumber];
+    console.log(`Today is ${dayName}`); 
+    }
 
 function changeText() {
     const temp = document.querySelector("#tempBar");
     temp.innerText = `+${intCurrentTemp}°C`;
+    const feelTemp = document.querySelector("#tempFeel");
+    feelTemp.innerText = `Feels like ${intApparentTemp}°C`;
+    const day = document.querySelector("#day");
+    console.log(dayName);
+    day.innerText = `${dayName}`;
 }
+
