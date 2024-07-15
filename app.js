@@ -4,8 +4,13 @@ let url1;
 let url2;
 let intCurrentTemp;
 let intApparentTemp;
+let humidity;
 let unixTime;
 let dayName;
+let intWindSpeed;
+let intPressuremSl;
+let upcomingDays;
+let nextDays;
 
 const inputElement = document.querySelector("#cityInput");
 inputElement.addEventListener('keydown', function(event) {
@@ -32,8 +37,9 @@ const getLocation = async() => {
     setTimeout (() => {
         console.log(latitude);
         console.log(longitude);
+        console.log(nextDays);
         },5000);
-    url2 = `https://api.open-meteo.com/v1/forecast?latitude=${longitude}&longitude=${latitude}&current=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,weather_code,wind_speed_10m&daily=weather_code,temperature_2m_max,precipitation_probability_max,wind_speed_10m_max&timeformat=unixtime&timezone=Asia%2FTokyo`;
+    url2 = `https://api.open-meteo.com/v1/forecast?latitude=${longitude}&longitude=${latitude}&current=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,weather_code,pressure_msl,wind_speed_10m&daily=weather_code,temperature_2m_max,precipitation_probability_max,wind_speed_10m_max&timeformat=unixtime&timezone=Asia%2FTokyo`;
     await getWeather();
 };
 
@@ -43,23 +49,36 @@ const getWeather = async() => {
     console.log(response2)
     let data2 = await response2.json();
     console.log(data2);
-    currentTemp = await data2.current.temperature_2m;
-    apparentTemp = await data2.current.apparent_temperature;
+    let currentTemp = await data2.current.temperature_2m;
+    let apparentTemp = await data2.current.apparent_temperature;
+    humidity = await data2.current.relative_humidity_2m;
+    let windSpeed = await data2.current.wind_speed_10m;
+    let pressure = await data2.current.pressure_msl;
     unixTime = await data2.current.time;
     intCurrentTemp = Math.floor(currentTemp);
     intApparentTemp = Math.floor(apparentTemp);
-    console.log(unixTime);
-    await getDay();
-    await changeText();
+    intWindSpeed = Math.floor(windSpeed);
+    intPressuremSl = Math.floor(pressure);
+    console.log(pressure);
+    getDay();
+    changeText();
 };
 
 function getDay() {
     const date = new Date(unixTime * 1000);
     const dayNumber = date.getDay();
     const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    upcomingDays = ['SUN','MON','TUE','WED','THU','FRI','SAT'];
     dayName = days[dayNumber];
-    console.log(`Today is ${dayName}`); 
+    nextDays = [] ;
+    for (let i = 1; i <= 6; i++){
+    const nextIndex = (dayNumber + i) % 7;
+    nextDays.push(upcomingDays[nextIndex]);
     }
+    console.log(`Today is ${dayName}`);
+    }
+
+    
 
 function changeText() {
     const temp = document.querySelector("#tempBar");
@@ -67,7 +86,30 @@ function changeText() {
     const feelTemp = document.querySelector("#tempFeel");
     feelTemp.innerText = `Feels like ${intApparentTemp}°C`;
     const day = document.querySelector("#day");
-    console.log(dayName);
     day.innerText = `${dayName}`;
+    const humidPer = document.querySelector("#humidPercent");
+    humidPer.innerText = `${humidity}%`;
+    const windSpeed = document.querySelector("#windSpeed");
+    windSpeed.innerText = `${intWindSpeed}km/h`; 
+    const seaPressure = document.querySelector("#pressureSealvl");
+    seaPressure.innerText = `${intPressuremSl}hPa`;
+    const day12 = document.querySelector("#day1");
+    day12.innerText=`${nextDays[0]}`;
+    console.log(nextDays[0]);
+    const day2 = document.querySelector("#day2");
+    day2.innerText=`${nextDays[1]}`;
+    console.log(nextDays[1]);
+    const day3 = document.querySelector("#day3");
+    day3.innerText=`${nextDays[2]}`;
+    console.log(nextDays[2]);
+    const day4 = document.querySelector("#day4");
+    day4.innerText=`${nextDays[3]}`;
+    console.log(nextDays[3]);
+    const day5 = document.querySelector("#day5");
+    day5.innerText=`${nextDays[4]}`;
+    console.log(nextDays[4]);
+    const day6 = document.querySelector("#day6");
+    day6.innerText=`${nextDays[5]}`;
+    console.log(nextDays[5]);
 }
 

@@ -101,7 +101,7 @@ body {
     margin-left: 2rem;
 }
 
-#speedd {
+#pressureSealvl{
     margin: 0;
     margin-left: 1rem;
 }
@@ -137,9 +137,9 @@ body {
     margin-top: -2rem;
 }
 
-.dayHumidity {
+.dayTemperature {
     display: flex;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     margin: 0.5rem;
     margin-top: 0;
     margin-left: 0;
@@ -147,25 +147,13 @@ body {
 
 .dayWind {
     display: flex;
-    font-size: 1.2rem;
+    font-size: 1.35rem;
     margin: 0.5rem;
     margin-left: 1.5rem;
     margin-top: 0;
 }
 
-.daySpeed {
-    display: flex;
-    font-size: 1.2rem;
-    margin: 0.5rem;
-    margin-top: 0;
-    margin-left: 2.2rem;
-}
-
-.daySpeedd {
-    margin-left: 9px;
-}
-
-.dayHumidPercent {
+.dayTemp {
     margin-left: 15px;
 }
 
