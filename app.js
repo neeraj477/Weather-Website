@@ -26,7 +26,7 @@ inputElement.addEventListener('keydown', function(event) {
         loader.style.display = 'block';
         setTimeout(function() {
             loader.style.display = 'none';
-        }, 1200);
+        }, 1300);
         getInputValue();
     }
 });
