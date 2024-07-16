@@ -22,6 +22,11 @@ const inputElement = document.querySelector("#cityInput");
 inputElement.addEventListener('keydown', function(event) {
     if(event.key === 'Enter' ) {
         console.log('Enter Key was pressed');
+        const loader = document.getElementById('loader');
+        loader.style.display = 'block';
+        setTimeout(function() {
+            loader.style.display = 'none';
+        }, 1300);
         getInputValue();
     }
 });
