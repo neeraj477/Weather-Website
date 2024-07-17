@@ -17,6 +17,7 @@ let mindailyTemp=[];
 let intMinDailyTemp=[];
 let windSpeed=[];
 let intDailyWindSpeed=[];
+let weatherCode;
 
 const inputElement = document.querySelector("#cityInput");
 inputElement.addEventListener('keydown', function(event) {
@@ -26,7 +27,7 @@ inputElement.addEventListener('keydown', function(event) {
         loader.style.display = 'block';
         setTimeout(function() {
             loader.style.display = 'none';
-        }, 1300);
+        }, 1400);
         getInputValue();
     }
 });
@@ -69,6 +70,7 @@ const getWeather = async() => {
     mindailyTemp = await data2.daily.temperature_2m_min;
     windSpeed = await data2.daily.wind_speed_10m_max;
     unixTime = await data2.current.time;
+    weatherCode = await data2.current.weather_code;
     intCurrentTemp = Math.floor(currentTemp);
     intApparentTemp = Math.floor(apparentTemp);
     intWindSpeed = Math.floor(currentWindSpeed);
@@ -77,7 +79,7 @@ const getWeather = async() => {
         intMaxDailyTemp[i] = Math.floor(maxdailyTemp[i]);
         intMinDailyTemp[i] = Math.floor(mindailyTemp[i]);
         intDailyWindSpeed[i] = Math.floor(windSpeed[i]);}
-    console.log(windSpeed);
+    console.log(weatherCode);
     getDay();
     changeText();
 };
@@ -147,5 +149,15 @@ function changeText() {
     windSpeed5.innerText=`${intDailyWindSpeed[4]}km/h`;
     const windSpeed6 = document.querySelector("#windSpeed6");
     windSpeed6.innerText=`${intDailyWindSpeed[5]}km/h`;
+    changeBackground();
 }
 
+function changeBackground() {
+    const background = document.getElementById('body');
+    if(weatherCode == 0 || weatherCode == 1) background.style.backgroundImage = 'url("clearSky101.jpg")';
+    if(weatherCode == 2 || weatherCode == 3 || weatherCode == 51) background.style.backgroundImage = 'url("partlyCloud.jpg")';
+    if(weatherCode == 53 || weatherCode == 61 || weatherCode == 80)background.style.backgroundImage = 'url("slightRain108.webp")'
+    if(weatherCode == 45 || weatherCode == 48) background.style.backgroundImage = 'url("fog103.jpg")';
+    if(weatherCode == 55 || weatherCode == 63 || weatherCode == 81) background.style.backgroundImage = 'url("rainy104.webp")';
+    if(weatherCode == 96 || weatherCode == 65 || weatherCode == 82) background.style.backgroundImage = 'url("thunderstrom105.jpg")';
+}
